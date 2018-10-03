@@ -14,6 +14,17 @@ public class DataBase {
         users.put(user.getUserId(), user);
     }
 
+    public static String update(User newUser) throws Exception {
+        User oldUser = findUserById(newUser.getUserId());
+        if (oldUser == null) {
+            throw new Exception(newUser.getUserId() + " 님은 없는 유저 입니다.");
+        }
+        oldUser.setName(newUser.getName());
+        oldUser.setPassword(newUser.getPassword());
+        oldUser.setEmail(newUser.getUserId());
+        return newUser.getUserId();
+    }
+
     public static User findUserById(String userId) {
         return users.get(userId);
     }
